@@ -1,0 +1,13 @@
+<div class="feature ps-2 text-bg-info d-flex justify-content-between">
+  {{ feature.name }}
+  <div>
+    <span type="button"
+          class="btn btn-success btn-sm"
+          hx-get="{% url "priorities:task_create" %}"
+          hx-target="closest .add-feature-task">➕</span>
+  </div>
+</div>
+<div class="add-feature-task"></div>
+{% for task in feature.task_set.all %}
+  {% include "priorities/management/task.html" %}
+{% endfor %}

@@ -1,0 +1,7 @@
+<div class="theme text-bg-success">{{ theme.name }}</div>
+{% for goal in theme.goal_set.all %}
+  {% include "priorities/management/goal.html" %}
+{% endfor %}
+{% for task in theme.task_set.all %}
+  {% include "priorities/management/task.html" %}
+{% endfor %}

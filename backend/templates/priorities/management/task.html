@@ -1,0 +1,13 @@
+<div class="task {% if task.feature %}ps-3{% else %}ps-1{% endif %} text-bg-primary d-flex justify-content-between">
+  {{ task.name }}
+  <div>
+    <span type="button" class="btn btn-sm btn-secondary">👁️</span>
+    <span type="button"
+          class="btn btn-info btn-sm"
+          hx-get="{% url "priorities:task_update_delete" task.id %}">✏️</span>
+    <span type="button"
+          class="btn btn-warning btn-sm"
+          hx-delete="{% url "priorities:task_update_delete" task.id %}"
+          hx-target="closest .task">❌</span>
+  </div>
+</div>

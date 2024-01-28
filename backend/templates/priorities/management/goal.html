@@ -1,0 +1,4 @@
+<div class="goal ps-1 text-bg-warning">{{ goal.name }}</div>
+{% for feature in goal.feature_set.all %}
+  {% include "priorities/management/feature.html" %}
+{% endfor %}
