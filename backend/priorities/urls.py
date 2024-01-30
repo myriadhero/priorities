@@ -14,4 +14,15 @@ urlpatterns = [
         views.TaskUpdateDeleteView.as_view(),
         name="task_update_delete",
     ),
+    path("feature/<int:pk>/", views.FeatureDetailView.as_view(), name="feature_detail"),
+    path(
+        "feature/create/",
+        views.FeatureCreateView.as_view(),
+        name="feature_create",
+    ),
+    path(
+        "feature/<int:pk>/update/",
+        views.FeatureUpdateDeleteView.as_view(),
+        name="feature_update_delete",
+    ),
 ]

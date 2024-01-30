@@ -24,3 +24,11 @@
     </div>
   </div>
 {% endblock content %}
+{% block scripts %}
+  {{ super }}
+  <script>
+  const myalert = (event) => {
+    alert(event.detail.xhr.responseText);
+  }
+  </script>
+{% endblock scripts %}

@@ -137,7 +137,7 @@ class Feature(PrioritizedModel):
 
 
 class Task(PrioritizedModel):
-    feature = models.ForeignKey(Feature, on_delete=models.SET_NULL, null=True, blank=True)
+    feature = models.ForeignKey(Feature, on_delete=models.PROTECT, null=True, blank=True)
     theme = models.ForeignKey(Theme, on_delete=models.PROTECT, null=True, blank=True)
 
     schedules = GenericRelation(Schedule, related_query_name="task")

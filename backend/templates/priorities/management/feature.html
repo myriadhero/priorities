@@ -1,13 +1,25 @@
-<div class="feature ps-2 text-bg-info d-flex justify-content-between">
-  {{ feature.name }}
-  <div>
-    <span type="button"
-          class="btn btn-success btn-sm"
-          hx-get="{% url "priorities:task_create" %}"
-          hx-target="closest .add-feature-task">➕</span>
+<div class="feature-wrapper">
+  <div class="feature ms-2 text-bg-info d-flex justify-content-between">
+    {{ feature.name }}
+    <div>
+      <span type="button"
+            class="btn btn-secondary btn-sm"
+            hx-get="{% url "priorities:feature_update_delete" feature.id %}"
+            hx-target="closest .feature"
+            hx-swap="outerHTML">✏️</span>
+      <span type="button"
+            class="btn btn-warning btn-sm"
+            hx-delete="{% url "priorities:feature_update_delete" feature.id %}"
+            hx-target="closest .feature-wrapper"
+            hx-on:htmx:response-error="myalert(event)">❌</span>
+      <span type="button"
+            class="btn btn-success btn-sm"
+            hx-get="{% url "priorities:task_create" %}?feature={{ feature.id }}"
+            hx-target="#feature-{{ feature.id }}-task-create">➕</span>
+    </div>
   </div>
+  <div id="feature-{{ feature.id }}-task-create"></div>
+  {% for task in feature.task_set.all %}
+    {% include "priorities/management/task.html" %}
+  {% endfor %}
 </div>
-<div class="add-feature-task"></div>
-{% for task in feature.task_set.all %}
-  {% include "priorities/management/task.html" %}
-{% endfor %}

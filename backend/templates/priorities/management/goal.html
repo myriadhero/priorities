@@ -1,4 +1,13 @@
-<div class="goal ps-1 text-bg-warning">{{ goal.name }}</div>
+<div class="goal ms-1 text-bg-warning d-flex justify-content-between">
+  {{ goal.name }}
+  <div>
+    <span type="button"
+          class="btn btn-success btn-sm"
+          hx-get="{% url "priorities:feature_create" %}?goal={{ goal.id }}"
+          hx-target="#goal-{{ goal.id }}-feature-create">➕</span>
+  </div>
+</div>
+<div id="goal-{{ goal.id }}-feature-create"></div>
 {% for feature in goal.feature_set.all %}
   {% include "priorities/management/feature.html" %}
 {% endfor %}
